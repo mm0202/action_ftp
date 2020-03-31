@@ -13,7 +13,7 @@ jobs:
           mkdir "sandbox"
           echo "success?" > sandbox/test.txt
       - name: upload
-        uses: mm0202/sandbox_action_ftp@master
+        uses: mm0202/action_ftp@master
         with:
           host: ${{ secrets.FTP_HOST }}
           user: ${{ secrets.FTP_USER }}
