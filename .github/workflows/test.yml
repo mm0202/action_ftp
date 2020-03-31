@@ -1,0 +1,26 @@
+name: test
+
+on: [push]
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: add file for test
+        run: |
+          mkdir "sandbox"
+          echo "success?" > sandbox/test.txt
+      - name: upload
+        uses: mm0202/sandbox_action_ftp@master
+        with:
+          host: ${{ secrets.FTP_HOST }}
+          user: ${{ secrets.FTP_USER }}
+          pw: ${{ secrets.FTP_PW }}
+          localDir: "sandbox"
+          remoteDir: "sandbox"
+      - uses: mm0202/action_slack-notify@master
+        if: always()
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

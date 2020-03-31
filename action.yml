@@ -1,0 +1,28 @@
+name: 'action_ftp'
+author: 'mm0202'
+description: 'GitHub Action for uploading with FTP'
+inputs:
+  host:
+    description: 'FTP host'
+    required: true
+  user:
+    description: 'FTP user'
+    required: true
+  pw:
+    description: 'FTP password'
+    required: true
+  force_ssl:
+    description: 'Force SSL encryption'
+    required: false
+    default: 'false'
+  localDir:
+    description: 'Local directory'
+    required: true
+    default: 'sandbox'
+  remoteDir:
+    description: 'Remote directory'
+    required: true
+    default: 'sandbox'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
